@@ -16,4 +16,8 @@ ingredients = SHEET.worksheet('ingredients')
 
 data = ingredients.get_all_values()
 
-print(data)
+print("Are you craving for some yummy sallad?")
+print("Tell your favourite veggie, and I show you what can you make out of it.")
+print("example: tomato")
+favourite_veggie = input("Type one vegetable \n").lower()
+print(favourite_veggie)
