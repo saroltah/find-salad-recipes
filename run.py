@@ -16,25 +16,29 @@ ingredients = SHEET.worksheet('ingredients')
 
 data = ingredients.get_all_values()
 
+print("Are you craving for some yummy sallad?")
+print("Tell your favourite veggie, and I show you what you can make out of it.")
 def ask_for_veggie():
     """
     Get user's favourite vegetable
     """
-    global favourite_veggie
-    print("Are you craving for some yummy sallad?")
-    print("Tell your favourite veggie, and I show you what can you make out of it.")
-    print("example: tomato")
-    favourite_veggie_input = input("Type one vegetable \n")
-    favourite_veggie = favourite_veggie_input.lower()
-    print(favourite_veggie)
-    validate_favourite_veggie(favourite_veggie)
+    while True:
+        global favourite_veggie
+        favourite_veggie_input = input("Type one vegetable. For example: tomato \n")
+        favourite_veggie = favourite_veggie_input.lower()
+        print(favourite_veggie)
+        if validate_favourite_veggie(favourite_veggie):
+            print ("I am looking for recipes..")
+            break
 
 def validate_favourite_veggie(value):
     try:
         if value.isnumeric():
             raise ValueError
     except ValueError as e:
-        print("wrong") 
+        print("Please type a vegtable") 
+        return False
+    return True
 
 ask_for_veggie()
    
