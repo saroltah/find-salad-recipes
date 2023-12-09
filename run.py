@@ -30,9 +30,9 @@ def ask_for_veggie():
             break
         return favourite_veggie
 
-def validate_favourite_veggie(value):
+def validate_favourite_veggie(veggie):
     try:
-        if value.isnumeric():
+        if veggie.isnumeric():
             raise ValueError
     except ValueError as e:
         print("Please type a vegtable") 
@@ -62,18 +62,27 @@ def clean_columns(all_columns):
                 clean_columns.append(x)
     #print(clean_columns)
 
-def find_matching_recipe(value, column):
+def find_matching_recipe(veggie, columns):
     """
     Find recipes, which contain the input ingredient.
     """
-    for ingredient in column:
-        if value in ingredient:
+    for ingredient in columns:
+        if veggie in ingredient:
             print("Hurray, I show you your match!")
-            return(value)
+            return(veggie)
+            break
         else:
             print("Oh no, I haven't found any recipes, try it again with something else.")
-        #all_functions()
+        all_functions()
     
+def show_matching_recipe(veggie, columns):
+    for index, column in enumerate(columns):
+        #print(f"index {index} : {column}")
+        num_list = f"{index} : {column}"
+        #print(num_list)
+        if veggie in num_list:
+            print(index)
+
 def all_functions():
     """
     Plays the whole sequence.
@@ -82,6 +91,7 @@ def all_functions():
     get_columns()
     #clean_columns(get_columns())
     find_matching_recipe(favourite_veggie, get_columns())
+    show_matching_recipe(favourite_veggie, get_columns())
     
 
 all_functions()
