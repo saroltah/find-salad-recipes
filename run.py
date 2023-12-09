@@ -39,52 +39,50 @@ def validate_favourite_veggie(value):
         return False
     return True
 
-def clean_table(value):
-    clean_column=[]
-    for column in value:
-        stripped_columns = []  
-        for cells in column:
-            spaceless_cells = cells.strip()  
-            if spaceless_cells != '':
-                stripped_columns.append(spaceless_cells)  
-        clean_column.append(stripped_columns)  
-    clean_row = []
-    for row in value:
-        for cells in row:
-            if cells != '':
-                clean_row.append(cells) 
-    return clean_column
-
-def find_matching_recipe(value, table_value):
+def get_columns():
     """
-    Find the recipes, which contain the input ingredient.
-    """ 
-    match = False
-    for ingredient in table_value:
+    Makes the columns list
+    """
+    all_columns=[]
+    for columns_index in range(len(all_ingredients[0])):
+        columns = [row[columns_index] for row in all_ingredients]
+        all_columns.append(columns)
+    #print(all_columns)
+    return(all_columns)
+
+def clean_columns(all_columns):
+    """
+    removes empty values
+    """
+    clean_columns = []
+    for column in all_columns:
+        for x in column:
+            if x.strip() != '':
+                #print(x)
+                clean_columns.append(x)
+    #print(clean_columns)
+
+def find_matching_recipe(value, column):
+    """
+    Find recipes, which contain the input ingredient.
+    """
+    for ingredient in column:
         if value in ingredient:
-            match = True  
-            break  
-    if match:
-        print("Hurray, I show you your match!")
-        return(value)
-    else:
-        print("Oh no, I haven't found any recipes, try it again with something else.")
-        all_functions()
-
-def show_matching_recipe(value, table_value):
-    """
-    Shows the columns where the matchin recipes are - the title then the rest of the ingrediencs.
-    """
-
-
+            print("Hurray, I show you your match!")
+            return(value)
+        else:
+            print("Oh no, I haven't found any recipes, try it again with something else.")
+        #all_functions()
+    
 def all_functions():
     """
     Plays the whole sequence.
     """
     ask_for_veggie()
-    clean_table(all_ingredients)
-    find_matching_recipe(favourite_veggie, clean_table(all_ingredients))
-    show_matching_recipe(favourite_veggie, clean_table(all_ingredients))
+    get_columns()
+    #clean_columns(get_columns())
+    find_matching_recipe(favourite_veggie, get_columns())
+    
 
 all_functions()
 
