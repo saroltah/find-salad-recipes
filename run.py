@@ -24,8 +24,9 @@ def ask_for_veggie():
     """
     while True:
         global favourite_veggie
-        favourite_veggie = input("Type one vegetable. For example: tomato \n")
-        if validate_favourite_veggie(favourite_veggie.lower()):
+        favourite_veggie_input = input("Type one vegetable. For example: tomato \n")
+        favourite_veggie = favourite_veggie_input.lower()
+        if validate_favourite_veggie(favourite_veggie):
             print ("I am looking for recipes..")
             break
         return favourite_veggie
@@ -42,13 +43,13 @@ def validate_favourite_veggie(veggie):
         return False
     return True
 
-def get_columns():
+def get_columns(sheet):
     """
     Makes the columns list
     """
     all_columns=[]
-    for columns_index in range(len(all_ingredients[0])):
-        columns = [row[columns_index] for row in all_ingredients]
+    for columns_index in range(len(sheet[0])):
+        columns = [row[columns_index] for row in sheet]
         all_columns.append(columns)
     return(all_columns)
 
@@ -60,7 +61,7 @@ def find_matching_recipe(veggie, columns):
     for ingredient in columns:
         if veggie in ingredient:
             print("Hurray, I show you your match!")
-            show_matching_recipe(favourite_veggie, get_columns())
+            show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
             break 
         else:
             print("Oh no, I haven't found any recipes, try it again with something else.")
@@ -78,27 +79,33 @@ def show_matching_recipe(veggie, columns):
                 spaceless_column.append(x)
         spaceless_columns.append(spaceless_column)
         
-   
     for index, column in enumerate(spaceless_columns):
         #print(f"index {index} : {column}")
         num_list = f"{index} : {column}"
         #print(num_list)
         if veggie in num_list:
-            print(f"Name: {column[0]}. Other ingredients: {column[1:]}")
-            
+            global recipe_name
+            recipe_name = column[0]
+            print(f"Name: {recipe_name}. Other ingredients: {column[1:]}")  
+        
 def show_the_whole_recipe():
     """
     Ask user if want to see the whole recipe
     """
+    link_sheet = SHEET.worksheet('link')
+    all_links = link_sheet.get_all_values()
+    get_columns(all_links)
     while True:
         global recipe_answer
         print("Would you like to see the whole recipe?")
-        recipe_answer = input("Type yes or no.\n")
-        if validate_recipe_answer(recipe_answer.lower()):   
-            #if recipe_answer == "yes":
-            print("hellyeah")
-            #if recipe_answer == "no":
-                #print("hellno")
+        recipe_answer_input = input("Type yes or no.\n")
+        recipe_answer = recipe_answer_input.lower()
+        if validate_recipe_answer(recipe_answer):   
+            if recipe_answer == "yes":
+                show_recipe_link(recipe_name, get_columns(all_links))
+            if recipe_answer == "no":
+                print("Have a nice day")
+                exit
         break
 
 def validate_recipe_answer(answer):
@@ -114,14 +121,25 @@ def validate_recipe_answer(answer):
         return False
     return True
 
+def show_recipe_link(name, links):
+    """
+    show the link of the recipe
+    """
+    for link in links:
+        if name in link:
+            print(f" You can find the whole recipe on this link: \n {link[1]}")
+    
+    
+
+
 def all_functions():
     """
     Plays the whole sequence.
     """
-    #ask_for_veggie()
-    #get_columns()
-    #find_matching_recipe(favourite_veggie, get_columns())
-    #show_matching_recipe(favourite_veggie, get_columns())
+    ask_for_veggie()
+    get_columns(all_ingredients)
+    find_matching_recipe(favourite_veggie, get_columns(all_ingredients))
+    #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     show_the_whole_recipe()
     
 
