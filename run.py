@@ -50,17 +50,6 @@ def get_columns():
     #print(all_columns)
     return(all_columns)
 
-def clean_columns(all_columns):
-    """
-    removes empty values
-    """
-    clean_columns = []
-    for column in all_columns:
-        for x in column:
-            if x.strip() != '':
-                #print(x)
-                clean_columns.append(x)
-    #print(clean_columns)
 
 def find_matching_recipe(veggie, columns):
     """
@@ -69,19 +58,32 @@ def find_matching_recipe(veggie, columns):
     for ingredient in columns:
         if veggie in ingredient:
             print("Hurray, I show you your match!")
-            return(veggie)
-            break
+            show_matching_recipe(favourite_veggie, get_columns())
+            break 
         else:
             print("Oh no, I haven't found any recipes, try it again with something else.")
         all_functions()
     
 def show_matching_recipe(veggie, columns):
-    for index, column in enumerate(columns):
+    """ 
+    Delete empty objects from list, then shows which list has the favorite_veggie ingredient.
+    """
+    spaceless_columns=[]
+    for column in columns:
+        spaceless_column=[]
+        for x in column:
+            if x.strip() != '':
+                spaceless_column.append(x)
+        spaceless_columns.append(spaceless_column)
+        
+   
+    for index, column in enumerate(spaceless_columns):
         #print(f"index {index} : {column}")
         num_list = f"{index} : {column}"
         #print(num_list)
         if veggie in num_list:
-            print(index)
+            print(f"Name: {column[0]}. Other ingredients: {column[1:]}")
+            
 
 def all_functions():
     """
@@ -89,9 +91,8 @@ def all_functions():
     """
     ask_for_veggie()
     get_columns()
-    #clean_columns(get_columns())
     find_matching_recipe(favourite_veggie, get_columns())
-    show_matching_recipe(favourite_veggie, get_columns())
+    #show_matching_recipe(favourite_veggie, get_columns())
     
 
 all_functions()
