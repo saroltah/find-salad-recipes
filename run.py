@@ -25,7 +25,6 @@ def ask_for_veggie():
         global favourite_veggie
         favourite_veggie_input = input("Type one vegetable. For example: tomato \n")
         favourite_veggie = favourite_veggie_input.lower()
-        print(favourite_veggie)
         if validate_favourite_veggie(favourite_veggie):
             print ("I am looking for recipes..")
             break
@@ -54,10 +53,9 @@ def clean_table(value):
         for cells in row:
             if cells != '':
                 clean_row.append(cells) 
-    print(clean_row)
     return clean_column
 
-def show_matching_recipe(value, table_value):
+def find_matching_recipe(value, table_value):
     """
     Find the recipes, which contain the input ingredient.
     """ 
@@ -67,13 +65,27 @@ def show_matching_recipe(value, table_value):
             match = True  
             break  
     if match:
-        print("hurray")
+        print("Hurray, I show you your match!")
+        return(value)
     else:
-        print("oh no")
+        print("Oh no, I haven't found any recipes, try it again with something else.")
+        all_functions()
+
+def show_matching_recipe(value, table_value):
+    """
+    Shows the columns where the matchin recipes are - the title then the rest of the ingrediencs.
+    """
 
 
+def all_functions():
+    """
+    Plays the whole sequence.
+    """
+    ask_for_veggie()
+    clean_table(all_ingredients)
+    find_matching_recipe(favourite_veggie, clean_table(all_ingredients))
+    show_matching_recipe(favourite_veggie, clean_table(all_ingredients))
 
-ask_for_veggie()
-clean_table(all_ingredients)
-show_matching_recipe(favourite_veggie, clean_table(all_ingredients))
+all_functions()
+
 
