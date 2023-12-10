@@ -21,7 +21,7 @@ print("Tell your favourite veggie, and I show you what you can make out of it.")
 
 def ask_for_veggie():
     """
-    Get user's favourite vegetable
+    Ask the user about their favourite vegetable.
     """
     while True:
         global favourite_veggie
@@ -36,7 +36,7 @@ def ask_for_veggie():
 
 def validate_favourite_veggie(veggie):
     """
-    Check if the answer is not numeric
+    Check if the answer is not numeric. If it is, it gives an error message.
     """
     try:
         if veggie.isnumeric():
@@ -49,7 +49,7 @@ def validate_favourite_veggie(veggie):
 
 def get_columns(sheet):
     """
-    Makes the columns list
+    Get the columns from the ingredients sheet.
     """
     all_columns=[]
     for columns_index in range(len(sheet[0])):
@@ -62,6 +62,9 @@ def get_columns(sheet):
 def find_matching_recipe(veggie, columns):
     """
     Find recipes, which contain the input ingredient.
+    Let the user know if there is recipe foind, or not.
+    If there is recipe found, it will be shown after.
+    If there is no recipe found, the user has an option to start it again.
     """
     for ingredient in columns:
         if veggie in ingredient:
@@ -75,7 +78,8 @@ def find_matching_recipe(veggie, columns):
     
 def show_matching_recipe(veggie, columns):
     """ 
-    Delete empty objects from list, then shows which list has the favorite_veggie ingredient.
+    Delete empty objects from list.
+    Show the user the matching recipe with the rest of the ingredients.
     """
     spaceless_columns=[]
     for column in columns:
@@ -103,7 +107,9 @@ def show_matching_recipe(veggie, columns):
 
 def show_the_whole_recipe():
     """
-    Ask user if want to see the whole recipe
+    Ask user if they want to see the whole recipe.
+    If they say yes, they will be shown the link.
+    If they say no, they have the option to start again.
     """
     link_sheet = SHEET.worksheet('link')
     all_links = link_sheet.get_all_values()
@@ -125,7 +131,7 @@ def show_the_whole_recipe():
 
 def validate_recipe_answer(answer):
     """
-    Check if the answer is yes or no
+    Check if the answer is yes or no.
     """
     try:
         if answer != "yes" and answer != "no":
@@ -137,7 +143,7 @@ def validate_recipe_answer(answer):
 
 def show_recipe_link(name, links):
     """
-    show the link of the recipe. [1] is the first row in the link_sheet, where the links are.
+    Show the link of the recipe. 
     """
     for link in links:
         if name in link:
@@ -146,7 +152,9 @@ def show_recipe_link(name, links):
 
 def start_again():
     """
-    replayes all the functions from the beginning
+    Ask user if they want to find another recipe.
+    If they say yes, they can start again adding ingredient.
+    If they don't, they exit the program.
     """
     while True:
         global start_again_answer
@@ -164,7 +172,7 @@ def start_again():
 
 def validate_start_again_answer(answer):
     """
-    Check if the answer is yes or no
+    Check if the answer is yes or no.
     """
     try:
         if answer != "yes" and answer != "no":
@@ -176,7 +184,7 @@ def validate_start_again_answer(answer):
 
 def all_functions():
     """
-    Plays the whole sequence.
+    Play the whole sequence.
     """
     ask_for_veggie()
     get_columns(all_ingredients)
@@ -184,6 +192,5 @@ def all_functions():
     #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_the_whole_recipe()
 
-all_functions()
-
-
+ all_functions()
+ 
