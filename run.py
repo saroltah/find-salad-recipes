@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from random import choice
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -26,9 +27,11 @@ def ask_for_veggie():
         global favourite_veggie
         favourite_veggie_input = input("Type one vegetable. For example: tomato \n")
         favourite_veggie = favourite_veggie_input.lower()
+
         if validate_favourite_veggie(favourite_veggie):
             print ("I am looking for recipes..")
             break
+
         return favourite_veggie
 
 def validate_favourite_veggie(veggie):
@@ -37,10 +40,11 @@ def validate_favourite_veggie(veggie):
     """
     try:
         if veggie.isnumeric():
-            raise ValueError
+            raise ValueError ("Numbers are not acceptable")
     except ValueError as e:
         print("Please type a vegtable") 
         return False
+
     return True
 
 def get_columns(sheet):
@@ -51,6 +55,7 @@ def get_columns(sheet):
     for columns_index in range(len(sheet[0])):
         columns = [row[columns_index] for row in sheet]
         all_columns.append(columns)
+
     return(all_columns)
 
 
@@ -64,8 +69,8 @@ def find_matching_recipe(veggie, columns):
             show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
             break 
         else:
-            print("Oh no, I haven't found any recipes, try it again with something else.")
-            all_functions()
+            print("Oh no, I haven't found any recipes.")
+            start_again()
             break
     
 def show_matching_recipe(veggie, columns):
@@ -82,13 +87,20 @@ def show_matching_recipe(veggie, columns):
         
     for index, column in enumerate(spaceless_columns):
         #print(f"index {index} : {column}")
-        num_list = f"{index} : {column}"
-        print(num_list)
-        if veggie in num_list:
+        num_lists = f"{index} : {column}"
+        #print(num_lists)
+        if veggie in num_lists:
             global recipe_name
             recipe_name = column[0]
-            print(f"Name: {recipe_name}. Other ingredients: {column[1:]}")  
-        
+            ingredients = column[1:]
+            delimiter = ', '
+            other_ingredients = delimiter.join(ingredients)
+            global matching_recipes
+            matching_recipes = f"Name: {recipe_name}. Other ingredients: {other_ingredients}"
+            print(matching_recipes)   
+            show_the_whole_recipe()
+            break
+
 def show_the_whole_recipe():
     """
     Ask user if want to see the whole recipe
@@ -96,15 +108,18 @@ def show_the_whole_recipe():
     link_sheet = SHEET.worksheet('link')
     all_links = link_sheet.get_all_values()
     get_columns(all_links)
+
     while True:
         global recipe_answer
         print("Would you like to see the whole recipe?")
         recipe_answer_input = input("Type yes or no.\n")
         recipe_answer = recipe_answer_input.lower()
-        if validate_recipe_answer(recipe_answer):   
+
+        if validate_recipe_answer(recipe_answer):
+
             if recipe_answer == "yes":
                 show_recipe_link(recipe_name, get_columns(all_links))
-            if recipe_answer == "no":
+            elif recipe_answer == "no":
                 start_again()
             break
 
@@ -117,13 +132,12 @@ def validate_recipe_answer(answer):
             raise ValueError 
     except ValueError as e:
         print("Please type yes or no") 
-        show_the_whole_recipe()
         return False
     return True
 
 def show_recipe_link(name, links):
     """
-    show the link of the recipe
+    show the link of the recipe. [1] is the first row in the link_sheet, where the links are.
     """
     for link in links:
         if name in link:
@@ -139,10 +153,11 @@ def start_again():
         print("Would you like to look for another recipe?")
         start_again_answer_input = input("Type yes or no.\n")
         start_again_answer = start_again_answer_input.lower()
+
         if validate_start_again_answer(start_again_answer):   
             if start_again_answer == "yes":
                 all_functions()
-            if start_again_answer == "no":
+            elif start_again_answer == "no":
                 print("Have a nice day")
                 exit
             break
@@ -156,7 +171,6 @@ def validate_start_again_answer(answer):
             raise ValueError 
     except ValueError as e:
         print("Please type yes or no") 
-        start_again_answer()
         return False
     return True
 
@@ -168,10 +182,7 @@ def all_functions():
     get_columns(all_ingredients)
     find_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
-    show_the_whole_recipe()
-
-
-    
+    #show_the_whole_recipe()
 
 all_functions()
 
