@@ -66,16 +66,21 @@ def find_matching_recipe(veggie, columns):
     If there is recipe found, it will be shown after.
     If there is no recipe found, the user has an option to start it again.
     """
-    for ingredient in columns:
-        if veggie in ingredient:
-            print("Hurray, I show you your match!")
-            show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
-            break 
-        else:
-            print("Oh no, I haven't found any recipes.")
-            start_again()
-            break
+    nested_columns = columns
+    flattened_columns = []
+    for sublist in nested_columns:
+        for item in sublist:
+            flattened_columns.append(item)
     
+    if veggie in flattened_columns:
+        print("Hurray, I show you your match!")
+        show_matching_recipe(favourite_veggie, get_columns(all_ingredients))    
+    else:
+        print("Oh no, I haven't found any recipes, try it again with something else.")
+        start_again()
+       
+        
+
 def show_matching_recipe(veggie, columns):
     """ 
     Delete empty objects from list.
@@ -96,9 +101,11 @@ def show_matching_recipe(veggie, columns):
         if veggie in num_lists:
             global recipe_name
             recipe_name = column[0]
+
             ingredients = column[1:]
             delimiter = ', '
             other_ingredients = delimiter.join(ingredients)
+
             global matching_recipes
             matching_recipes = f"Name: {recipe_name}. Other ingredients: {other_ingredients}"
             print(matching_recipes)   
@@ -192,5 +199,5 @@ def all_functions():
     #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_the_whole_recipe()
 
- all_functions()
+all_functions()
  
