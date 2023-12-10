@@ -65,7 +65,8 @@ def find_matching_recipe(veggie, columns):
             break 
         else:
             print("Oh no, I haven't found any recipes, try it again with something else.")
-        all_functions()
+            all_functions()
+            break
     
 def show_matching_recipe(veggie, columns):
     """ 
@@ -82,7 +83,7 @@ def show_matching_recipe(veggie, columns):
     for index, column in enumerate(spaceless_columns):
         #print(f"index {index} : {column}")
         num_list = f"{index} : {column}"
-        #print(num_list)
+        print(num_list)
         if veggie in num_list:
             global recipe_name
             recipe_name = column[0]
@@ -104,9 +105,8 @@ def show_the_whole_recipe():
             if recipe_answer == "yes":
                 show_recipe_link(recipe_name, get_columns(all_links))
             if recipe_answer == "no":
-                print("Have a nice day")
-                exit
-        break
+                start_again()
+            break
 
 def validate_recipe_answer(answer):
     """
@@ -128,9 +128,37 @@ def show_recipe_link(name, links):
     for link in links:
         if name in link:
             print(f" You can find the whole recipe on this link: \n {link[1]}")
-    
-    
+    start_again()
 
+def start_again():
+    """
+    replayes all the functions from the beginning
+    """
+    while True:
+        global start_again_answer
+        print("Would you like to look for another recipe?")
+        start_again_answer_input = input("Type yes or no.\n")
+        start_again_answer = start_again_answer_input.lower()
+        if validate_start_again_answer(start_again_answer):   
+            if start_again_answer == "yes":
+                all_functions()
+            if start_again_answer == "no":
+                print("Have a nice day")
+                exit
+            break
+
+def validate_start_again_answer(answer):
+    """
+    Check if the answer is yes or no
+    """
+    try:
+        if answer != "yes" and answer != "no":
+            raise ValueError 
+    except ValueError as e:
+        print("Please type yes or no") 
+        start_again_answer()
+        return False
+    return True
 
 def all_functions():
     """
@@ -141,6 +169,8 @@ def all_functions():
     find_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     show_the_whole_recipe()
+
+
     
 
 all_functions()
