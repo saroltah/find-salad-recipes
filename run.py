@@ -16,9 +16,6 @@ SHEET = GSPREAD_CLIENT.open('find_sallad_recipes')
 ingredients_sheet = SHEET.worksheet('ingredients')
 all_ingredients = ingredients_sheet.get_all_values()
 
-print("Are you craving for some yummy sallad?")
-print("Tell your favourite veggie, and I show you what you can make out of it.")
-
 def ask_for_veggie():
     """
     Ask the user about their favourite vegetable.
@@ -30,10 +27,10 @@ def ask_for_veggie():
         favourite_veggie = favourite_veggie_input.lower()
 
         if validate_favourite_veggie(favourite_veggie):
-            print ("I am looking for recipes..")
-            break
 
-        return favourite_veggie
+            print ("I am looking for recipes..")
+            return favourite_veggie
+            break
 
 def validate_favourite_veggie(veggie):
     """
@@ -41,12 +38,12 @@ def validate_favourite_veggie(veggie):
     """
 
     try:
-        if veggie.isnumeric():
-            raise ValueError ("Numbers are not acceptable")
+        if not veggie.isalpha():
+            raise ValueError ("Numbers and characters are not acceptable")
     except ValueError as e:
-        print("Please type a vegtable") 
+        print("Numbers and characters are not acceptable") 
         return False
-
+    
     return True
 
 def get_columns(sheet):
@@ -98,18 +95,16 @@ def show_matching_recipe(veggie, columns):
         spaceless_column=[x for x in column if x.strip() != '']
         spaceless_columns.append(spaceless_column)
         
-    for index, column in enumerate(spaceless_columns):
-        num_lists = f"{index} : {column}"
-
-        if veggie in num_lists:
-            global recipe_name
-            recipe_name = column[0]
+    for column in spaceless_columns:
+        global recipe_name
+        recipe_name = column[0]
             
-            ingredients = column[1:]
-            delimiter = ', '
-            other_ingredients = delimiter.join(ingredients)
+        ingredients = column[1:]
+        delimiter = ', '
+        other_ingredients = delimiter.join(ingredients)
 
-            matching_recipes = f"Name: {recipe_name}. All ingredients: {other_ingredients}"
+        if veggie in ingredients:
+            matching_recipes = f"Name: {recipe_name}. All veggies you need: {other_ingredients}"
             print(matching_recipes)   
             show_the_whole_recipe()
             break
@@ -193,6 +188,9 @@ def all_functions():
     find_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
     #show_the_whole_recipe()
+    
+print("Are you craving for some yummy sallad?")
+print("Tell your favourite veggie, and I show you what you can make out of it.")
 
 all_functions()
  
