@@ -51,7 +51,8 @@ def validate_favourite_veggie(veggie):
 
 def get_columns(sheet):
     """
-    Get the columns from the ingredients sheet.
+    Get the columns from the googsheet.
+    Column index is the length of first row.
     """
 
     all_columns=[]
@@ -94,10 +95,7 @@ def show_matching_recipe(veggie, columns):
     spaceless_columns=[]
 
     for column in columns:
-        spaceless_column=[]
-        for x in column:
-            if x.strip() != '':
-                spaceless_column.append(x)
+        spaceless_column=[x for x in column if x.strip() != '']
         spaceless_columns.append(spaceless_column)
         
     for index, column in enumerate(spaceless_columns):
@@ -131,8 +129,8 @@ def show_the_whole_recipe():
         print("Would you like to see the whole recipe?")
         recipe_answer_input = input("Type yes or no.\n")
         recipe_answer = recipe_answer_input.lower()
-        
-        if validate_recipe_answer(recipe_answer):
+
+        if validate_answer(recipe_answer):
 
             if recipe_answer == "yes":
                 show_recipe_link(recipe_name, get_columns(all_links))
@@ -140,14 +138,14 @@ def show_the_whole_recipe():
                 start_again()
             break
 
-def validate_recipe_answer(answer):
+def validate_answer(answer):
     """
     Check if the answer is yes or no.
     """
 
     try:
         if answer != "yes" and answer != "no":
-            raise ValueError 
+            raise ValueError ("only yes or no is acceptable")
     except ValueError as e:
         print("Please type yes or no") 
         return False
@@ -176,7 +174,7 @@ def start_again():
         start_again_answer_input = input("Type yes or no.\n")
         start_again_answer = start_again_answer_input.lower()
 
-        if validate_start_again_answer(start_again_answer):  
+        if validate_answer(start_again_answer):  
 
             if start_again_answer == "yes":
                 all_functions()
@@ -184,19 +182,6 @@ def start_again():
                 print("Have a nice day")
                 exit
             break
-
-def validate_start_again_answer(answer):
-    """
-    Check if the answer is yes or no.
-    """
-
-    try:
-        if answer != "yes" and answer != "no":
-            raise ValueError 
-    except ValueError as e:
-        print("Please type yes or no") 
-        return False
-    return True
 
 def all_functions():
     """
