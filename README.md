@@ -13,15 +13,16 @@
  - Original idea: Users write an ingredient that is in their fridge, so the program gives them recipes.
  - The goal is for the user to use up what they have, so save food, don't throw it out.
  
- </br>
  
 ### Otput and implemented idea:
+
+
  - But for this app, it should be too big a database, that needs a lot of time to create
  - So I created the small version, where users choose a vegetable (I call it favorite, but of course what they have), and they get a recommended salad recipe.
  
- <br>
- 
  ### Future functions:
+
+
  - Bigger database
  - Being able to see more options, and choose the one they like
  - Adding more ingredients to restrict the circle
@@ -32,8 +33,6 @@
  
  ---
 
-
- 
  ### Planning
  - I draw a diagram, from which function - which action what triggers, and what is the next step.
  - I also planned out in text form.
@@ -46,10 +45,10 @@
  - Browsing through cooking books or videos takes up too much time and energy, so this should be a quick opportunity to help inspire the user about that day's meal.
    Also, it saves money if you can use up the ingredients you already have.
 
-
  </br>
  
 ### Follow through the app:
+
 - Introduction - welcome text.
 
 
@@ -93,8 +92,12 @@
 
 
     - If they don't want to look for more recipes, the program says bye, and exit.
-   
+
+  </br> 
+
 ---
+
+</br>
 
 ## Technology I used:
  
@@ -107,18 +110,13 @@
 -  gspread
 - Credentials from google.oauth2.service_account
 
+</br>
+
 ---
 
 </br>
 
-
 ## Process of coding, Errors and solutions
-
-
-</br>
-
-
-
 
 ### Workflow
 
@@ -133,17 +131,11 @@
 
 
 ### Progress, errors, and solutions
-</br>
-
 
 ### 1.
-
-
 **Define how the program would work, and make a diagram.**
 
-
  </br>
-
 
 ### 2.
 **Set up API for google sheet**
@@ -152,29 +144,23 @@
  
 </br>
 
-
 ### 3.
 **Set up Python**
 - integrate API, hide creds.json file
 
-
 </br>
-
 
 ### 4.
 **Install python libraries**
 
-
  </br>
-
 
 ### 5.
 **ask_for_veggie() function:**
 - Add presentation of the app: "Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it.
 - Add the favoruite_veggie input with an example.
- 
-   </br>
 
+</br>
 
 ### 6.
 **validate_favoruite_veggie() function:**
@@ -185,8 +171,7 @@
  
 **- Error 1:**
  
-Def validate function was not working
-
+validate_favourite_veggie function was not working
 
 **- Solution:**
  
@@ -212,7 +197,6 @@ return was after the break, so I changed and now the break is after the return.
    
 </br>
 
-
 ### 7.
 **get_columns() function:**
 - Creates column lists from the index of the rows.
@@ -221,7 +205,6 @@ return was after the break, so I changed and now the break is after the return.
   - Then put these lists into one big all_columns list
  
 </br>
-
 
 ### 8.
 **find_matching_recipe() function:**
@@ -233,12 +216,9 @@ return was after the break, so I changed and now the break is after the return.
  
 When it loops through all the ingredients, it writes out many times if there is a match or not. Also, it says no match, when there is a match.
 
-
 **- Solution:**
 
-
 - There was no break. So when I added a break, it stopped after the first matching column. But If the first matching column was the 3rd, it wrote out 2 times no solution, then 3rd found it. So I added a pass instead of the break for no matches. But then I couldn't have the no-match message.  
-
 
 - Then I noticed the columns were nested. The reason for the error is that it looped through the columns one by one. So it only looped through the first one, when it had a break. So I created flattened columns, which united all the separate column lists into one list, so the function could look through all the data. Now I could check if the input is in the list. So don't need to loop anymore, and I can add a message.
              
@@ -250,14 +230,13 @@ For the case there was no matching recipe, I added the ask_for_veggies() functio
  
 I created all_functions, where I put the whole sequence, and called that when the program needed to start again. I changed it later to the start_again() function.
 
-
 - If there is a match, it triggers the show_recipe() function. If there is no match, it triggers the start_again() function.  
  
 </br>
 
-
 ### 9.
 **Show_matching_recipe function:**
+
 - It writes the name and the rest of the ingredients of the matching recipe. It shows 1 - the first matching recipe. - Future function: it shows all the matches, so the user can choose.
  
 - My goal was to find which column has that ingredient, I used the enumerate() function, so it has the number of columns. So I can loop through and get the list. I can find the favorite veggie in the list, and call it back.
@@ -276,11 +255,9 @@ some values are not found.
 
 **- Solution:**
 
-
 Remove empty values! : columns = [x for x in columns if x != ''] but it's not working. So I created a new list spaceless_columns. The values were not returning in the list, because I returned x directly back to spaceless_columns. Instead, I created a spaceless_column list too, returned x back to spaceless_column, and returned spaceless_column to spaceless_columns.
  
 _-initial ideas for this function:_
-
 
 - 1: idea: define row first:
   Get the rows as a list.
@@ -288,21 +265,17 @@ _-initial ideas for this function:_
   Then get avocados place: pl row-index 0
   Then add+1 to get the column, since column numbers start from 1
 
-
-
-
-- idea 2, get columns as lists:[sallad1], [sallad2]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, and then it breaks.  
-  That is why it shows only one option. The column(list) where is founded the veggie is a list with "normal" index numbers so that I could call the name of the recipe with [0] and the rest of the ingredients with [1:]
+- idea 2, get columns as lists:[sallad1 ], [sallad2 ]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, and then it breaks.  
+  That is why it shows only one option. The column(list) where is founded the veggie is a list with "normal" index numbers so that I could call the name of the recipe with [0] and the rest of the ingredients with [1: ]
   In the future when I add the chose_recipe function, I remove the break, so it shows all the options.
        
 I reunited the find_matching_recipe() and show_matching recipe(), which was working the same fine, but I think it is better to have smaller functions, so I rather leave them separate.
 
-
  </br>
-
 
 ### 10.
 **show_the_whole_recipe function:**
+
 -  The function asks the users if they want to see the whole recipe. The answer can be yes or no, with an if-elif statement the yes triggers the show_recipe_link function, and the no triggers the start_again function.
 -  I get the values of the link sheet of my Google sheet (link_sheet) and call the values from it (all_links). Also, I called again the get_columns() function, to make columns, just with different arguments.
 - I used the valide_answer() function, to check if the answer is anything else than yes or no. I used the same True expression as in the first ask_for_veggie function.
@@ -311,55 +284,46 @@ I reunited the find_matching_recipe() and show_matching recipe(), which was work
  
 Validation didn't work, it returned false always.
 
-
 **- Solution:**
    
 I used yes or no - I changed it to yes AND no
 
-
- </br>
-
+</br>
 
 ### 11.
 **show_recipe_link:**
+
 -  It loops through the link_sheet columns, and if there is a match with the name of the recipe, then it prints its link.
 - When the user gets the recipe, it triggers the start_again() function.
              
  </br>
 
-
 ### 12.
 **adding start again() function:**
+
  - It can have same yes-no answer, as in show_whole_recipe() function, with the same while True loop and validate_answer() function. When the user says yes, it replays all the functions all_functions(), if the answer is no, it wishes a nice day and exits the program.
  
 **- Error 1:**
    
 It exits but still shows the show_whole_recipe function.
 
-
 **- Solution:**
-
 
 In the main sequence  show_matching_recipe() is later the find_matching_recipe() function. Find_matching_recipe() can trigger start_again(), and even if it exits the program, show_matching_recipe() would still be played. So I moved show_matching_recipe() into the find_matching__recipe, so it is only triggered by the user's answer.
              
 **-  Error 2:**
 
-
 If there are more matches, it plays through with the first match, exit, then it plays through with the second.
-
 
 **- Solution:**
 
-
-that was also fixed by getting flattened_list.
-
+That was also fixed by getting flattened_list.
 
 </br>
 
-### Testing
+## Testing
 
-| What to do                                                                                                         | How to do                                                               | Expected outcome                                                                                                                                                                                                                        | Actual Outcome                                                                                                                                                                                                                          |
-| |  |  |  |
+
 | What to do                                                                                                         | How to do                                                               | Expected outcome                                                                                                                                                                                                                        | Actual Outcome                                                                                                                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Opening the app it has an initial message and shows the first input | Open the app | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it |
@@ -392,33 +356,26 @@ that was also fixed by getting flattened_list.
 ### 13.
 **Optimization:**
 
-
 - I had functions for validating yes-no answers, I refactored them into one, and I used it with different arguments. I also reused the get_columns function with different arguments.
  
 - Making expressions shorter
 
-
-1.     spaceless_column=[]
-     for x in column:
-        if x.strip() != '':
-        spaceless_column.append(x)
+1.      spaceless_column=[]
+        for x in column:
+          if x.strip() != '':
+            spaceless_column.append(x)
        
-spaceless_column=[x for x in column if x.strip() != '']
+         => spaceless_column=[x for x in column if x.strip() != '']
 
+2.        columns = []
+          for row in sheet:
+            columns.append(row[columns_index])
 
-2.    columns = []
-      for row in sheet:
-        columns.append(row[columns_index])
-
-
-columns = [row[columns_index] for row in sheet]
-
+          => columns = [row[columns_index] for row in sheet]
 
 </br>
 
-
 - I made all input answers lowercase, so it eliminates the error that it doesn't find a match due to an uppercase letter, also the Recipe names are uppercase, so it eliminates the issue of pairing up with the recipe name instead of ingredients.
-
 
 - I gave relevant names for everything to make the code easy to follow
 
@@ -426,7 +383,7 @@ columns = [row[columns_index] for row in sheet]
 
 </br>
 
-##Deployment
+## Deployment
  !?
   </br>
 ---
@@ -434,46 +391,21 @@ columns = [row[columns_index] for row in sheet]
 
 ### Credits:  
 
-
 **1. Getting columns from rows:**
 
-
-for i in range(4):
-    transposed_row = []
-    for row in matrix:
-        transposed_row.append(row[i])
-    transposed.append(transposed_row)
- 
-**SOURCE:** ![Python.org](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
-
+![Python.org](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
 
 **2. Making a flattened list**
 
-
-nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-flattened_list = []
-for sublist in nested_list:
-    for item in sublist:
-        flattened_list.append(item)
+![Io flood](https://ioflood.com/blog/python-flatten-list-how-to-flatted-nested-lists-in-python/)
    
-**SOURCE:** ![Io flood](https://ioflood.com/blog/python-flatten-list-how-to-flatted-nested-lists-in-python/)
-   
-**3. I learned about how to make expressions shorter:**
-
-
-**SOURCE:** ![Spark by examples]( https://sparkbyexamples.com/python/write-python-for-loop-in-one-line/)
-
-
-**4. Making string from the list:**
+**3. Making string from the list:**
  
-my_list = ['apple', 'banana', 'orange']
-delimiter = ', '
-my_string = delimiter.join(my_list)
-print(my_string)
-Output: apple, banana, orange
+![Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
 
+**3. All the recipes:**
 
-**SOURCE:** ![Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
+![Love and lemons](https://www.loveandlemons.com/salad-recipes/)
 
 
 
