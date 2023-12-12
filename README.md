@@ -2,11 +2,7 @@
 
 ![Live website link]()
 
-</br>
-
 ---
-
- </br>
 
 ### Idea of the applicaton
 
@@ -31,7 +27,7 @@
  </br>
  
  ---
- </br>
+
   
  ### Planning
  - I draw a diagram, from which function - which action what triggers, what is the next step.
@@ -49,26 +45,38 @@
  
 ### Follow through the app:
 - Introduction - welcome text.
+
 - The users are asked to type a vegtable - if it is not text, it throws an error, that they should write a text. Other characters are not allowed.
+
 - Then the program loops through its data base, to find if the wished veggie is matching with the ingredients of one of the recipes. Meanwhile it lets user know that it is loading looking for recipes...
+
   - If there is match, it says "Horray.." 
+
   - It shows the recipe's name, and show's the other veggies that are needed. It asks the users, if they want to see the whole recipe.
-		- If they do want to see the whole recipe, it shows the link of the website where they can find it. Then the program asks, if they want to find another recipe or not. 
-			-If they do want to find another recipe, they can start adding a veggie again.
-			-If they don't want to look for more recipes, the program says bye, and exit.
+
+	- If they do want to see the whole recipe, it shows the link of the website where they can find it. Then the program asks, if they want to find another recipe or not. 
+
+		- If they do want to find another recipe, they can start adding a veggie again.
+
+		- If they don't want to look for more recipes, the program says bye, and exit.
+
 		- If the users chose that they don't want to see the recipe, they have the option to look for something else.
-			-If they want to find another recipe, they can start adding a veggie again.
-			-If they don't want to look for more recipes, the program says bye, and exit.
+
+			- If they want to find another recipe, they can start adding a veggie again.
+
+			- If they don't want to look for more recipes, the program says bye, and exit.
+
 	- If there is no match for the recipe, It says "Oh no.. "
+
 	- Then program asks if they want to look for something else:
-		-If they want to find another recipe, they can start adding a veggie again.
-		-If they don't want to look for more recipes, the program says bye, and exit.
+
+		- If they want to find another recipe, they can start adding a veggie again.
+
+		- If they don't want to look for more recipes, the program says bye, and exit.
 		
 </br>
 
 ---
-
-</br>
 
 ## Process of coding, Errors and solutions
 
@@ -84,6 +92,8 @@
  </br>
 
 ### Progress, errors and solutions
+
+</br>
 
 ### 1. 
 **Define how program would work, make a diagram.**
@@ -102,7 +112,6 @@
 - integrate API, hide creds.json file
 
 </br>
-
 
 ### 4. 
 **Install python libraries**
@@ -211,10 +220,12 @@ _-initial ideas for this function:_
 		Then loop through rows: avocado, beatroot, pea pl.
 		Then get avocados place: pl row-index 0
 		Then add+1 so get the column, since column numbers starts from 1
+
 		OR
-		- idea 2, get columns as lists:[sallad1], [sallad2]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, then it breaks.  
-		That is why it shows only one option. The column(list) where is founds the veggie is a list with "normal" index numbers, so I could call the name of the recipe with [0] and the rest of the ingredients with [1:]
-		In future when I add chose_recipe function, I remove break, so it shows all the options.
+
+	- idea 2, get columns as lists:[sallad1], [sallad2]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, then it breaks.  
+	That is why it shows only one option. The column(list) where is founds the veggie is a list with "normal" index numbers, so I could call the name of the recipe with [0] and the rest of the ingredients with [1:]
+  In future when I add chose_recipe function, I remove break, so it shows all the options.
 				
 I reunited the find_matching_recipe and show_matching recipe, which was working the same fine, but I think it is better to have smaller functions, so I rather leave them separate.
 
@@ -235,7 +246,6 @@ Validation didn't work, it returned false always.
 I used yes or no - I changes it to yes AND no
 
  </br>
-
 
 ### 10. 
 **show_recipe_link:**
@@ -271,7 +281,6 @@ that was also fixed with getting flattened_list.
 
 - I had functions for validating yes-no answered, I refactored them into one, and I use it with different arguments. I also reused get_columns function with different arguments.
 	
-
 - Making expressions shorter
 
 1.  spaceless_column=[]
@@ -292,7 +301,6 @@ columns = [row[columns_index] for row in sheet]
 ---
 
 </br>
-
 
 ### Credits:  
 
@@ -342,7 +350,6 @@ Output: apple, banana, orange
   </br>
 ---
  </br>
-
 
 ## Technology I used:
  
