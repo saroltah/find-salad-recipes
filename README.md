@@ -60,13 +60,13 @@
 
 		- If they don't want to look for more recipes, the program says bye, and exit.
 
-		- If the users chose that they don't want to see the recipe, they have the option to look for something else.
+	- If the users chose that they don't want to see the recipe, they have the option to look for something else.
 
-			- If they want to find another recipe, they can start adding a veggie again.
+		- If they want to find another recipe, they can start adding a veggie again.
 
-			- If they don't want to look for more recipes, the program says bye, and exit.
+		- If they don't want to look for more recipes, the program says bye, and exit.
 
-	- If there is no match for the recipe, It says "Oh no.. "
+- If there is no match for the recipe, It says "Oh no.. "
 
 	- Then program asks if they want to look for something else:
 
@@ -74,13 +74,14 @@
 
 		- If they don't want to look for more recipes, the program says bye, and exit.
 		
-</br>
-
 ---
+
+</br>
 
 ## Process of coding, Errors and solutions
 
 </br>
+
 
 ### Workflow
 
@@ -88,14 +89,14 @@
 - I also wrote down which function triggers what, so I can compare it how my code follows, where is the error.
 - I made some variables global, so i can access them later.
 - I define all functions, and after that the app starts with print() and calling the functions.
- 
+
  </br>
 
 ### Progress, errors and solutions
-
 </br>
 
 ### 1. 
+
 **Define how program would work, make a diagram.**
 
  </br>
@@ -138,7 +139,7 @@ Def validate function was not working
 
 **- Solution:** 
   
-validate_favourite_veggie was inside the ask_for_veggie function, I needed to take it out.
+validate_favourite_veggie was inside the ask_for_veggie() function, I needed to take it out.
 	
 **- Error 2:** 
   
@@ -171,30 +172,31 @@ return was after break, so I chancged and now break is after return.
 **find_matching_recipe() function:**
 - It checks if the given favourite_veggie input data is found in the data-base. Then with if-else function shows message if data was found or not.
 - (It was show matching recipe first, but i rather devided it into two functions.)
-- For checking errors I print all_ingredients - there was many empty cells.(I created empty_table function, but in the end deleted and chose to delete spaces within show_matching_recipe function) Also it checks the rows - I want to check columns. -> I created get_columns function.
+- For checking errors I print all_ingredients - there was many empty cells.(I created empty_table function, but in the end deleted and chose to delete spaces within show_matching_recipe function) Also it checks the rows - I want to check columns. -> I created get_columns() function.
 	
-**-Error 1-2:** 
+**- Error 1-2:** 
   
 When it loops through all ingredients, it writes out many times if there is match or no. Also it says no match, when there is match.
 
 **- Solution:** 
 
--There was no break. So when I added break, it stopped after the first matching column. But If the first matching column was the 3rd, it wrote out 2times no solution, then 3rd found it. So I added pass instead of break for no matches. But then I couldn't have no-match message.  
+- There was no break. So when I added break, it stopped after the first matching column. But If the first matching column was the 3rd, it wrote out 2times no solution, then 3rd found it. So I added pass instead of break for no matches. But then I couldn't have no-match message.  
+
 - Then I noticed the columns were nested. The reason of error is that it looped through the columns one by one. So it only looped through the first one, when it had a break. So i created flattened columns, which united all the separate column lists to one list, so the function can look thorugh all data. Now I could check if the input is in the list. So don't need to loop anymore, and I can add message.
 							
-**-Error 3:** 
+**- Error 3:** 
     
-For the case there was no matching recipe, I added ask_for_veggies function, but it didn't show anything 
+For the case there was no matching recipe, I added ask_for_veggies() function, but it didn't show anything 
     
 **- Solution:** 
   
-I created all_functions, where i put the whole sequence, and called that when the program needs to start again. I changed it later to Start_again function.	
+I created all_functions, where i put the whole sequence, and called that when the program needs to start again. I changed it later to start_again() function.	
 
-- If there is match, it triggers show_recipe function. If there is no match, it triggers start_again() function.	
+- If there is match, it triggers show_recipe() function. If there is no match, it triggers start_again() function.	
 	
 </br>
 
-### 8. 
+### 9. 
 **Show_matching_recipe function:**
 - It writes the name and the rest of the ingredients of the matching recipe. It shows 1 - the first matching recipe. - Future function: it shows all the matches, so user can choose.
 	
@@ -215,23 +217,23 @@ some values are not found.
 Remove empty values! : columns = [x for x in columns if x != ''] but it's not working. So i created a new list spaceless_columns. The values were not returning in list, because I returned x directly back to spaceless_columns. Instead I created a spaceless_column list too, return x back to spaceless_column and  returned spaceless_column back to spaceless_columns. 
 	
 _-initial ideas for this function:_
-	- 1: idea: define row first: 
-		Get the rows as a list - 0, 1: 2:
-		Then loop through rows: avocado, beatroot, pea pl.
-		Then get avocados place: pl row-index 0
-		Then add+1 so get the column, since column numbers starts from 1
 
-		OR
+- 1: idea: define row first: 
+	Get the rows as a list.
+	Then loop through rows: avocado, beatroot, pea pl.
+	Then get avocados place: pl row-index 0
+	Then add+1 so get the column, since column numbers starts from 1
 
-	- idea 2, get columns as lists:[sallad1], [sallad2]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, then it breaks.  
+
+- idea 2, get columns as lists:[sallad1], [sallad2]  and loop through where avocado is. I used this idea. The function loops through the spaceless columns, checks in which recipe the favoruite_veggie is, then it breaks.  
 	That is why it shows only one option. The column(list) where is founds the veggie is a list with "normal" index numbers, so I could call the name of the recipe with [0] and the rest of the ingredients with [1:]
   In future when I add chose_recipe function, I remove break, so it shows all the options.
 				
-I reunited the find_matching_recipe and show_matching recipe, which was working the same fine, but I think it is better to have smaller functions, so I rather leave them separate.
+I reunited the find_matching_recipe() and show_matching recipe(), which was working the same fine, but I think it is better to have smaller functions, so I rather leave them separate.
 
  </br>
 
-### 9. 
+### 10. 
 **show_the_whole_recipe function:**
 -  The function asks the users if they want to see the whole recipe. The answer can be yes or no, with an if-elif statement the yes triggers show_recipe_link function, and no triggers start_again function.
 -  I get the values of the link sheet of my google sheet (link_sheet), and call the values from it (all_links). Also I called again the get_columns() function, to make columns, just with different argument. 
@@ -247,14 +249,14 @@ I used yes or no - I changes it to yes AND no
 
  </br>
 
-### 10. 
+### 11. 
 **show_recipe_link:**
 -  It loops through the link_sheet columns, and if there is match with the name of the recipe, then it prints its link. 
 - When the user gets the recipe, it triggers start_again() function.
              
  </br>
 
-### 11. 
+### 12. 
 **adding start again() function:**
  - It can have same yes-no answer, as in show_whole_recipe() function, with the same while True loop and validate_answer() function. When the user says yes, it replays all the functions all_functions(), if the answer is no, it wished a nice day and exits the program.
  
@@ -283,14 +285,14 @@ that was also fixed with getting flattened_list.
 	
 - Making expressions shorter
 
-1.  spaceless_column=[]
-		for x in column:
-			if x.strip() != '':
+1. 		 spaceless_column=[]
+		 for x in column:
+		    if x.strip() != '':
 				spaceless_column.append(x)
        
 spaceless_column=[x for x in column if x.strip() != '']
 
-2.		columns = []
+2.	 	columns = []
 			for row in sheet:
 				columns.append(row[columns_index])
 
