@@ -187,8 +187,6 @@ def all_functions():
     ask_for_veggie()
     get_columns(all_ingredients)
     find_matching_recipe(favorite_veggie, get_columns(all_ingredients))
-    #show_matching_recipe(favorite_veggie, get_columns(all_ingredients))
-    #show_the_whole_recipe()
     
 print("Are you craving some yummy salad?")
 print("Tell your favorite veggie, and I show you what you can make out of it.")
