@@ -1,5 +1,6 @@
-git 
-from random import choice
+import gspread
+from google.oauth2.service_account import Credentials
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -17,21 +18,21 @@ all_ingredients = ingredients_sheet.get_all_values()
 
 def ask_for_veggie():
     """
-    Ask the user about their favourite vegetable.
+    Ask the user about their favorite vegetable.
     """
 
     while True:
-        global favourite_veggie
-        favourite_veggie_input = input("Type one vegetable. For example: tomato \n")
-        favourite_veggie = favourite_veggie_input.lower()
+        global favorite_veggie
+        favorite_veggie_input = input("Type a vegetable. For example: tomato \n")
+        favorite_veggie = favorite_veggie_input.lower()
 
-        if validate_favourite_veggie(favourite_veggie):
+        if validate_favorite_veggie(favorite_veggie):
 
             print ("I am looking for recipes..")
-            return favourite_veggie
+            return favorite_veggie
             break
 
-def validate_favourite_veggie(veggie):
+def validate_favorite_veggie(veggie):
     """
     Check if the answer is not numeric. If it is, it gives an error message.
     """
@@ -48,7 +49,7 @@ def validate_favourite_veggie(veggie):
 def get_columns(sheet):
     """
     Get the columns from the googsheet.
-    Column index is the length of first row.
+    The column index is the length of the first row.
     """
 
     all_columns=[]
@@ -63,9 +64,10 @@ def get_columns(sheet):
 def find_matching_recipe(veggie, columns):
     """
     Find recipes, which contain the input ingredient.
-    Let the user know if there is recipe foind, or not.
-    If there is recipe found, it will be shown after.
+    Let the user know if there is a recipe found, or not.
+    If there is a recipe found, it will be shown after.
     If there is no recipe found, the user has an option to start it again.
+
     """
 
     nested_columns = columns
@@ -77,7 +79,7 @@ def find_matching_recipe(veggie, columns):
 
     if veggie in flattened_columns:
         print("Hurray, I show you your match!")
-        show_matching_recipe(favourite_veggie, get_columns(all_ingredients))    
+        show_matching_recipe(favorite_veggie, get_columns(all_ingredients))    
     else:
         print("Oh no, I haven't found any recipes, try it again with something else.")
         start_again()
@@ -110,9 +112,10 @@ def show_matching_recipe(veggie, columns):
 
 def show_the_whole_recipe():
     """
-    Ask user if they want to see the whole recipe.
+    Ask users if they want to see the whole recipe.
     If they say yes, they will be shown the link.
     If they say no, they have the option to start again.
+
     """
 
     link_sheet = SHEET.worksheet('link')
@@ -148,7 +151,7 @@ def validate_answer(answer):
 
 def show_recipe_link(name, links):
     """
-    Show the link of the recipe. 
+    Show the link to the recipe.
     """
 
     for link in links:
@@ -158,8 +161,8 @@ def show_recipe_link(name, links):
 
 def start_again():
     """
-    Ask user if they want to find another recipe.
-    If they say yes, they can start again adding ingredient.
+    Ask users if they want to find another recipe.
+    If they say yes, they can start again by adding an ingredient.
     If they don't, they exit the program.
     """
 
@@ -167,7 +170,6 @@ def start_again():
         print("Would you like to look for another recipe?")
         start_again_answer_input = input("Type yes or no.\n")
         start_again_answer = start_again_answer_input.lower()
-
         if validate_answer(start_again_answer):  
 
             if start_again_answer == "yes":
@@ -184,12 +186,12 @@ def all_functions():
 
     ask_for_veggie()
     get_columns(all_ingredients)
-    find_matching_recipe(favourite_veggie, get_columns(all_ingredients))
-    #show_matching_recipe(favourite_veggie, get_columns(all_ingredients))
+    find_matching_recipe(favorite_veggie, get_columns(all_ingredients))
+    #show_matching_recipe(favorite_veggie, get_columns(all_ingredients))
     #show_the_whole_recipe()
     
-print("Are you craving for some yummy sallad?")
-print("Tell your favourite veggie, and I show you what you can make out of it.")
+print("Are you craving some yummy salad?")
+print("Tell your favorite veggie, and I show you what you can make out of it.")
 
 all_functions()
  
