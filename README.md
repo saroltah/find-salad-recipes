@@ -1,7 +1,7 @@
 # Find Salad Recipes
 
 
-![Live website link](https://find-salad-recipes-0da45bbd37f1.herokuapp.com/)
+[Live website link](https://find-salad-recipes-0da45bbd37f1.herokuapp.com/)
 
 
 ---
@@ -405,25 +405,31 @@ That was also fixed by getting flattened_list.
 
 ### Credits:  
 
-**1. Getting columns from rows:**
+I learned some code snippets: 
+
+**1. I learned some code snippets:**
+
+- Getting columns from rows:
 
 [Python.org](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
 
-**2. Making a flattened list**
+- Making a flattened list
 
 [Io flood](https://ioflood.com/blog/python-flatten-list-how-to-flatted-nested-lists-in-python/)
    
-**3. Making string from the list:**
+- Making string from the list:
  
 [Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
 
-**4. SpreadSheet Not Found:**
+- SpreadSheet Not Found:
  
 [Docs.gspread](https://docs.gspread.org/en/latest/api/exceptions.html#gspread.exceptions.SpreadsheetNotFound)
 
-**5. All the recipes:**
+**2. All the amazing recipes:**
 
-[Love and lemons](https://www.loveandlemons.com/salad-recipes/)
+- [Love and lemons](https://www.loveandlemons.com/salad-recipes/)
+
+Special thanks to Code Institute and my mentor Ronan McClelland for reviewing, helping and answering all my questions, and Máté Godár who helped me solving technical issues, so I could start my project. 
 
 
 
