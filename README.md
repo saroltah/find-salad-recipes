@@ -20,14 +20,9 @@
  - But for this app, it should be too big a database, that needs a lot of time to create
  - So I created the small version, where users choose a vegetable (I call it favorite, but of course what they have), and they get a recommended salad recipe.
  
- ### Future functions:
+ ### Future ideas:
 
-
- - Bigger database
- - Being able to see more options, and choose the one they like
- - Adding more ingredients to restrict the circle
- - Having the option to add your recipe
- - Maybe clean up data, because it contains some fruit and herbs also. For me, they all go into the same category - plants. But adding your favorite edible plant does not sound nice.
+In a future reboot I am concidering to add more options to choose from, and a function where the user can add their own recipe.
  
  </br>
  
@@ -395,7 +390,8 @@ That was also fixed by getting flattened_list.
 - I gave relevant names for everything to make the code easy to follow
 
 - Have an example.json file, which helps to recreate the project but doesn't contain sensitive data.
----
+
+- I added if __ name __ == "__ main __" before I call all_functions(), so it doesn't run automatically, only when I directly want to execute it. 
 
 </br>
 

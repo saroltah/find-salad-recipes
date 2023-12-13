@@ -218,5 +218,6 @@ print("Are you craving some yummy salad?")
 print("Tell your favorite veggie, and I show you what you can make out of it.")
 print("Loading data..")  
 
-all_functions()
+if __name__ == "__main__":
+    all_functions()
  
