@@ -1,7 +1,7 @@
 # Find Salad Recipes
 
 
-![Live website link]()
+![Live website link](https://find-salad-recipes-0da45bbd37f1.herokuapp.com/)
 
 
 ---
@@ -96,10 +96,12 @@ In a future reboot I am concidering to add more options to choose from, and a fu
 
 ## Technology I used:
  
- - ![GitHub](https://github.com/)
- - ![Heroku](https://dashboard.heroku.com/apps)
- - ![Google Sheet](https://www.google.com/sheets/about/)
- - ![VS Code](https://code.visualstudio.com/)
+ - [GitHub](https://github.com/)
+ - [Heroku](https://dashboard.heroku.com/apps)
+ - [Google Sheet](https://www.google.com/sheets/about/)
+ - [VS Code](https://code.visualstudio.com/)
+ - [Python Syntax Checker](https://extendsclass.com/python-tester.html)
+
  
 **Libraries:**
 -  gspread
@@ -361,7 +363,7 @@ That was also fixed by getting flattened_list.
 | If there is no match with the veggie_inout it says oh no | To the favorite_veggie input, I answer something out of the database | It says: Oh no, I haven't found any recipes, try it again with something else | It says: Oh no, I haven't found any recipes, try it again with something else |
 | After sending Oh no message it asks if I want to look for another recipe | To the favorite_veggie input, I answer something out of the database | After Oh, no message it says Would you like to look for another recipe? Type yes or no. | After Oh, no message it says Would you like to look for another recipe? Type yes or no.| 
 | The sequence can go on "forever" | I am playing through the sequence many times without answering no to look for more recipe questions | It is working, playing everything again and again | It is working, playing everything again and again | 
-| Validation shows no error | I copied my code to ![]() | It says no error | It says no error | 
+| Validation shows no error | I copied my code to [Python Syntax Checker](https://extendsclass.com/python-tester.html) | It says no syntax error detected | It says no syntax error detected | 
 
 
 ### Optimization:
@@ -405,15 +407,15 @@ That was also fixed by getting flattened_list.
 
 **1. Getting columns from rows:**
 
-![Python.org](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+[Python.org](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
 
 **2. Making a flattened list**
 
-![Io flood](https://ioflood.com/blog/python-flatten-list-how-to-flatted-nested-lists-in-python/)
+[Io flood](https://ioflood.com/blog/python-flatten-list-how-to-flatted-nested-lists-in-python/)
    
 **3. Making string from the list:**
  
-![Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
+[Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
 
 **4. SpreadSheet Not Found:**
  
@@ -421,7 +423,7 @@ That was also fixed by getting flattened_list.
 
 **5. All the recipes:**
 
-![Love and lemons](https://www.loveandlemons.com/salad-recipes/)
+[Love and lemons](https://www.loveandlemons.com/salad-recipes/)
 
 
 
