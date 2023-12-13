@@ -160,14 +160,16 @@
 - It calls the data from the ingredients work_sheet and puts it in a variable.
 - If the sheet is not available, it throws an error message, that The 'ingredients' worksheet is not found in the spreadsheet.
 
-### 5.
+</br>
+
+### 6.
 **ask_for_veggie() function:**
 - Add presentation of the app: "Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it.
 - Add the favoruite_veggie input with an example.
 
 </br>
 
-### 6.
+### 7.
 **validate_favoruite_veggie() function:**
  Make favorite_veggie input data valid:
 - Make all the input lowercase
@@ -202,7 +204,7 @@ return was after the break, so I changed and now the break is after the return.
    
 </br>
 
-### 7.
+### 8.
 **get_columns() function:**
 - Creates column lists from the index of the rows.
   - Checks the length of the first row - that is the range it will loop through,
@@ -211,7 +213,7 @@ return was after the break, so I changed and now the break is after the return.
  
 </br>
 
-### 8.
+### 9.
 **find_matching_recipe() function:**
 - It checks if the given favorite_veggie input data is found in the database. Then with if-else function shows a message if data was found or not.
 - (It was shown the matching recipe first, but I rather divided it into two functions.)
@@ -239,7 +241,14 @@ I created all_functions, where I put the whole sequence, and called that when th
  
 </br>
 
-### 9.
+### 10.
+**Validate_link_sheet() function:**
+- It calls the data from the link worksheet and puts it in a variable.
+- If the sheet is not available, it throws an error message, that The 'link' worksheet is not found in the spreadsheet.
+
+<br> 
+
+### 11.
 **Show_matching_recipe function:**
 
 - It writes the name and the rest of the ingredients of the matching recipe. It shows 1 - the first matching recipe. - Future function: it shows all the matches, so the user can choose.
@@ -278,7 +287,7 @@ I reunited the find_matching_recipe() and show_matching recipe(), which was work
 
  </br>
 
-### 10.
+### 12.
 **show_the_whole_recipe function:**
 
 -  The function asks the users if they want to see the whole recipe. The answer can be yes or no, with an if-elif statement the yes triggers the show_recipe_link function, and the no triggers the start_again function.
@@ -295,7 +304,7 @@ I used yes or no - I changed it to yes AND no
 
 </br>
 
-### 11.
+### 13.
 **show_recipe_link:**
 
 -  It loops through the link_sheet columns, and if there is a match with the name of the recipe, then it prints its link.
@@ -303,7 +312,7 @@ I used yes or no - I changed it to yes AND no
              
  </br>
 
-### 12.
+### 14.
 **adding start again() function:**
 
  - It can have same yes-no answer, as in show_whole_recipe() function, with the same while True loop and validate_answer() function. When the user says yes, it replays all the functions all_functions(), if the answer is no, it wishes a nice day and exits the program.
@@ -331,7 +340,7 @@ That was also fixed by getting flattened_list.
 
 | What to do                                                                                                         | How to do                                                               | Expected outcome                                                                                                                                                                                                                        | Actual Outcome                                                                                                                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Opening the app it has an initial message and shows the first input | Open the app | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it |
+| Opening the app it has an initial message and shows the first input | Open the app | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it. Also it says loading.. | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it. Also it says loading.. |
 | The ingredients worksheet is available | Start the app | The validate_ingredients_sheet() function doesn't throw error | The validate_ingredients_sheet() function doesn't throw error |
 | Favorite_veggie input is working | Try to write in it | I can write | I can write |
 | The validation is working | I try to write letters, numbers, and characters and hand them in empty | It throws an error message anytime except when I write letters: Numbers and characters are not acceptable | It throws an error message anytime except when I write letters: Numbers and characters are not acceptable | 
@@ -339,6 +348,7 @@ That was also fixed by getting flattened_list.
 | The program makes my favorite_veggie input lowercase | I write with capital letters, and print()the input to the terminal | It returns lowercase | It returns lowercase |
 | It has a message that it is loading while looking for recipes | Submit my answer | It says I am looking for recipes… | It says I am looking for recipes… |
 | There is a Hurray message if there is a match | Type a veggie that is in my database | It says: Hurray, I show you your match! | It says: Hurray, I show you your match! |
+| The link worksheet is available | Run the app, until there is match | The validate_link_sheet() function doesn't throw error | The validate_link_sheet() function doesn't throw error |
 | After the Hurray message it shows one recipe | Type a veggie that is in my database | It writes out your Name: and All the veggies you need: | It writes out your Name: and All the veggies you need: |
 | All the veggies include favoruite_veggie | Type a veggie that is in my database and compare it with the result | All the veggies you need also list the one I was asking for in favorite_veggie input. | All the veggies you need also list the one I was asking for in favorite_veggie input. |
 | It Asks if I want to check the whole recipe | Type a veggie that is in my database | After the recommended salad it asks, would you like to see the whole recipe? type yes or no | After the recommended salad it asks would you like to see the whole recipe? type yes or no |
@@ -359,8 +369,7 @@ That was also fixed by getting flattened_list.
 | Validation shows no error | I copied my code to ![]() | It says no error | It says no error | 
 
 
-### 13.
-**Optimization:**
+### Optimization:
 
 - I had functions for validating yes-no answers, I refactored them into one, and I used it with different arguments. I also reused the get_columns function with different arguments.
  
@@ -390,7 +399,7 @@ That was also fixed by getting flattened_list.
 
 </br>
 
-## Deployment
+### Deployment
  !?
   </br>
 ---

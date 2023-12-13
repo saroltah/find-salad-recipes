@@ -124,6 +124,18 @@ def show_matching_recipe(veggie, columns):
             show_the_whole_recipe()
             break
 
+def validate_link_sheet():
+    """
+    Raise error message if ingredients_sheet is not reachable.
+    """
+
+    try:
+        link_sheet = SHEET.worksheet('link')
+        global all_links  
+        all_links = link_sheet.get_all_values()
+    except gspread.exceptions.WorksheetNotFound:
+        print("The 'link' worksheet is not found in the spreadsheet.")
+
 def show_the_whole_recipe():
     """
     Ask users if they want to see the whole recipe.
@@ -132,8 +144,7 @@ def show_the_whole_recipe():
 
     """
 
-    link_sheet = SHEET.worksheet('link')
-    all_links = link_sheet.get_all_values()
+    validate_link_sheet()
     get_columns(all_links)
 
     while True:
@@ -148,6 +159,7 @@ def show_the_whole_recipe():
             elif recipe_answer == "no":
                 start_again()
             break
+
 
 def validate_answer(answer):
     """
