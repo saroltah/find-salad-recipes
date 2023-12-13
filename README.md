@@ -27,7 +27,7 @@
  - Being able to see more options, and choose the one they like
  - Adding more ingredients to restrict the circle
  - Having the option to add your recipe
- - Maybe clean up data, because it contains some fruit and herbs also. For me, they all go into the same category - plants. But adding your favorite edible plant sounds silly.
+ - Maybe clean up data, because it contains some fruit and herbs also. For me, they all go into the same category - plants. But adding your favorite edible plant does not sound nice.
  
  </br>
  
