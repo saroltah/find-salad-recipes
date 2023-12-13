@@ -2,6 +2,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
+#These code snippets are borrowed from Code Institute:
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -13,8 +15,20 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('find_sallad_recipes')
 
-ingredients_sheet = SHEET.worksheet('ingredients')
-all_ingredients = ingredients_sheet.get_all_values()
+
+
+def validate_ingredients_sheet():
+    """
+    Raise error message if ingredients_sheet is not reachable.
+    """
+
+    try:
+        ingredients_sheet = SHEET.worksheet('ingredients') 
+        global all_ingredients  
+        all_ingredients = ingredients_sheet.get_all_values()
+    except gspread.exceptions.WorksheetNotFound:
+        print("The 'ingredients' worksheet is not found in the spreadsheet.")
+
 
 def ask_for_veggie():
     """
@@ -176,20 +190,21 @@ def start_again():
                 all_functions()
             elif start_again_answer == "no":
                 print("Have a nice day")
-                exit
+                exit()
             break
 
 def all_functions():
     """
     Play the whole sequence.
     """
-
+    validate_ingredients_sheet()
     ask_for_veggie()
     get_columns(all_ingredients)
     find_matching_recipe(favorite_veggie, get_columns(all_ingredients))
     
 print("Are you craving some yummy salad?")
 print("Tell your favorite veggie, and I show you what you can make out of it.")
+print("Loading data..")  
 
 all_functions()
  

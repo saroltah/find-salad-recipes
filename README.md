@@ -156,6 +156,11 @@
  </br>
 
 ### 5.
+**Validate_ingredients_sheet() function:**
+- It calls the data from the ingredients work_sheet and puts it in a variable.
+- If the sheet is not available, it throws an error message, that The 'ingredients' worksheet is not found in the spreadsheet.
+
+### 5.
 **ask_for_veggie() function:**
 - Add presentation of the app: "Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it.
 - Add the favoruite_veggie input with an example.
@@ -327,6 +332,7 @@ That was also fixed by getting flattened_list.
 | What to do                                                                                                         | How to do                                                               | Expected outcome                                                                                                                                                                                                                        | Actual Outcome                                                                                                                                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Opening the app it has an initial message and shows the first input | Open the app | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it | Are you craving some yummy salad? Tell me your favorite veggie, and I show you what you can make out of it |
+| The ingredients worksheet is available | Start the app | The validate_ingredients_sheet() function doesn't throw error | The validate_ingredients_sheet() function doesn't throw error |
 | Favorite_veggie input is working | Try to write in it | I can write | I can write |
 | The validation is working | I try to write letters, numbers, and characters and hand them in empty | It throws an error message anytime except when I write letters: Numbers and characters are not acceptable | It throws an error message anytime except when I write letters: Numbers and characters are not acceptable | 
 | The While loop is working for validating favorite_veggie: | I try to write letters, numbers, and characters and hand them in empty | It asks again and again to Type one vegetable. For example: in tomato, the loop stops only when I write letters | It asks again and again to Type one vegetable. For example: in tomato, the loop stops only when I write letters |
@@ -379,6 +385,7 @@ That was also fixed by getting flattened_list.
 
 - I gave relevant names for everything to make the code easy to follow
 
+- Have an example.json file, which helps to recreate the project but doesn't contain sensitive data.
 ---
 
 </br>
@@ -403,7 +410,11 @@ That was also fixed by getting flattened_list.
  
 ![Simpli learn](https://www.simplilearn.com/tutorials/python-tutorial/list-to-string-in-python)
 
-**3. All the recipes:**
+**4. SpreadSheet Not Found:**
+ 
+[Docs.gspread](https://docs.gspread.org/en/latest/api/exceptions.html#gspread.exceptions.SpreadsheetNotFound)
+
+**5. All the recipes:**
 
 ![Love and lemons](https://www.loveandlemons.com/salad-recipes/)
 
