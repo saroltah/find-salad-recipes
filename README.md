@@ -101,6 +101,7 @@ In a future reboot I am concidering to add more options to choose from, and a fu
  - [Google Sheet](https://www.google.com/sheets/about/)
  - [VS Code](https://code.visualstudio.com/)
  - [Python Syntax Checker](https://extendsclass.com/python-tester.html)
+ - [Colorama](https://pypi.org/project/colorama/)
 
  
 **Libraries:**
@@ -394,6 +395,14 @@ That was also fixed by getting flattened_list.
 - Have an example.json file, which helps to recreate the project but doesn't contain sensitive data.
 
 - I added if __ name __ == "__ main __" before I call all_functions(), so it doesn't run automatically, only when I directly want to execute it. 
+
+- To make it more readable and friendlier I used Colorama and also inserted some emojis.
+
+  - type to the terminal: pip colorama install
+	- colorama.just_fix_windows_console()
+  - then import it to the file: from colorama import init, Fore, Style
+  - call it once with init()
+  - Then I used the documentation to find colors and inserted in my text. {Fore.COLOR}, {Style.RESET_ALL}
 
 </br>
 

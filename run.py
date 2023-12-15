@@ -121,7 +121,7 @@ def show_matching_recipe(veggie, columns):
         other_ingredients = delimiter.join(ingredients)
 
         if veggie in ingredients:
-            matching_recipes = f"Name: {recipe_name}. \n All veggies you need: {other_ingredients}"
+            matching_recipes = f"Name: ✨ {recipe_name} ✨. \n All veggies you need: {other_ingredients}"
             print(matching_recipes)   
             show_the_whole_recipe()
             break
