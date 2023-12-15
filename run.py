@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from colorama import init, Fore, Style
 
 
 #These code snippets are borrowed from Code Institute:
@@ -16,6 +17,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('find_sallad_recipes')
 
 
+init()
 
 def validate_ingredients_sheet():
     """
@@ -37,7 +39,7 @@ def ask_for_veggie():
 
     while True:
         global favorite_veggie
-        favorite_veggie_input = input("Type a vegetable. For example: tomato \n")
+        favorite_veggie_input = input(f"{Fore.GREEN}Type a vegetable. For example: tomato{Style.RESET_ALL}\n")
         favorite_veggie = favorite_veggie_input.lower()
 
         if validate_favorite_veggie(favorite_veggie):
@@ -92,10 +94,10 @@ def find_matching_recipe(veggie, columns):
             flattened_columns.append(item)
 
     if veggie in flattened_columns:
-        print("Hurray, I show you your match!")
+        print(f"{Fore.MAGENTA}Hurray, I show you your match!{Style.RESET_ALL}")
         show_matching_recipe(favorite_veggie, get_columns(all_ingredients))    
     else:
-        print("Oh no, I haven't found any recipes, try it again with something else.")
+        print(f"Oh no, I haven't found any recipes, try it again with something else.")
         start_again()
        
 def show_matching_recipe(veggie, columns):
@@ -119,7 +121,7 @@ def show_matching_recipe(veggie, columns):
         other_ingredients = delimiter.join(ingredients)
 
         if veggie in ingredients:
-            matching_recipes = f"Name: {recipe_name}. All veggies you need: {other_ingredients}"
+            matching_recipes = f"Name: {recipe_name}. \n All veggies you need: {other_ingredients}"
             print(matching_recipes)   
             show_the_whole_recipe()
             break
@@ -148,7 +150,7 @@ def show_the_whole_recipe():
     get_columns(all_links)
 
     while True:
-        print("Would you like to see the whole recipe?")
+        print(f"{Fore.GREEN}Would you like to see the whole recipe?{Style.RESET_ALL}")
         recipe_answer_input = input("Type yes or no.\n")
         recipe_answer = recipe_answer_input.lower()
 
@@ -182,7 +184,7 @@ def show_recipe_link(name, links):
 
     for link in links:
         if name in link:
-            print(f"You can find the whole recipe on this link: \n {link[1]}")
+            print(f"You can find the whole recipe on this link: \n {Fore.MAGENTA}{link[1]}{Style.RESET_ALL}")
     start_again()
 
 def start_again():
@@ -193,15 +195,15 @@ def start_again():
     """
 
     while True:
-        print("Would you like to look for another recipe?")
-        start_again_answer_input = input("Type yes or no.\n")
+        print(f"{Fore.GREEN}Would you like to look for another recipe?{Style.RESET_ALL}")
+        start_again_answer_input = input("Type yes or no. \n ")
         start_again_answer = start_again_answer_input.lower()
         if validate_answer(start_again_answer):  
 
             if start_again_answer == "yes":
                 all_functions()
             elif start_again_answer == "no":
-                print("Have a nice day")
+                print("Have a nice day!🥗💗")
                 exit()
             break
 
@@ -214,7 +216,7 @@ def all_functions():
     get_columns(all_ingredients)
     find_matching_recipe(favorite_veggie, get_columns(all_ingredients))
     
-print("Are you craving some yummy salad?")
+print("Are you craving some yummy salad?🥗💗")
 print("Tell your favorite veggie, and I show you what you can make out of it.")
 print("Loading data..")  
 
