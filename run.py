@@ -39,7 +39,7 @@ def ask_for_veggie():
 
     while True:
         global favorite_veggie
-        favorite_veggie_input = input(f"{Fore.GREEN}Type a vegetable. For example: tomato{Style.RESET_ALL}\n")
+        favorite_veggie_input = input(f"{Style.BRIGHT}{Fore.GREEN}Type a vegetable. For example: tomato{Style.RESET_ALL}\n")
         favorite_veggie = favorite_veggie_input.lower()
 
         if validate_favorite_veggie(favorite_veggie):
@@ -94,7 +94,7 @@ def find_matching_recipe(veggie, columns):
             flattened_columns.append(item)
 
     if veggie in flattened_columns:
-        print(f"{Fore.MAGENTA}Hurray, I show your match!{Style.RESET_ALL}")
+        print(f"{Style.BRIGHT}{Fore.MAGENTA}Hurray, I show your match!{Style.RESET_ALL}")
         show_matching_recipe(favorite_veggie, get_columns(all_ingredients))    
     else:
         print(f"Oh no, I haven't found any recipes unfortunately.")
@@ -150,7 +150,7 @@ def show_the_whole_recipe():
     get_columns(all_links)
 
     while True:
-        print(f"{Fore.GREEN}Would you like to see the whole recipe?{Style.RESET_ALL}")
+        print(f"{Style.BRIGHT}{Fore.GREEN}Would you like to see the whole recipe?{Style.RESET_ALL}")
         recipe_answer_input = input("Type yes or no.\n")
         recipe_answer = recipe_answer_input.lower()
 
@@ -184,7 +184,7 @@ def show_recipe_link(name, links):
 
     for link in links:
         if name in link:
-            print(f"You can find the whole recipe on this link: \n {Fore.MAGENTA}{link[1]}{Style.RESET_ALL}")
+            print(f"You can find the whole recipe on this link: \n {Style.BRIGHT}{Fore.MAGENTA}{link[1]}{Style.RESET_ALL}")
     start_again()
 
 def start_again():
@@ -195,7 +195,7 @@ def start_again():
     """
 
     while True:
-        print(f"{Fore.GREEN}Would you like to look for another recipe?{Style.RESET_ALL}")
+        print(f"{Style.BRIGHT}{Fore.GREEN}Would you like to look for another recipe?{Style.RESET_ALL}")
         start_again_answer_input = input("Type yes or no. \n ")
         start_again_answer = start_again_answer_input.lower()
         if validate_answer(start_again_answer):  
