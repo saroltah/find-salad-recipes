@@ -94,10 +94,10 @@ def find_matching_recipe(veggie, columns):
             flattened_columns.append(item)
 
     if veggie in flattened_columns:
-        print(f"{Fore.MAGENTA}Hurray, I show you your match!{Style.RESET_ALL}")
+        print(f"{Fore.MAGENTA}Hurray, I show your match!{Style.RESET_ALL}")
         show_matching_recipe(favorite_veggie, get_columns(all_ingredients))    
     else:
-        print(f"Oh no, I haven't found any recipes, try it again with something else.")
+        print(f"Oh no, I haven't found any recipes unfortunately.")
         start_again()
        
 def show_matching_recipe(veggie, columns):
@@ -172,7 +172,7 @@ def validate_answer(answer):
         if answer != "yes" and answer != "no":
             raise ValueError ("only yes or no is acceptable")
     except ValueError as e:
-        print("Please type yes or no") 
+        print("This question can only be answered with yes or no.") 
         return False
 
     return True
