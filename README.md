@@ -92,7 +92,49 @@ In a future reboot I am concidering to add more options to choose from, and a fu
 
 ---
 ## Deployment
-  
+
+Creating GitHub repository: 
+I. I used the Code Institute template for creating this project:
+1. Open the repository of the template
+2. Click on “Use this template”
+3. Click on “Create a new repository”
+4. Add your project’s name and keep it public
+5. Click on “Create repository”
+6. I clicked on "Code" in my repository, then “Open with GitHub Dekstop”.
+7. From there I opened my project in VS Code.
+
+II. Deploying on Heroku
+1. Make sure my code is ready for deployment:
+2. Add a new line at the end of every input
+3. Update the requirement list - using this command in the terminal: “Pip3 freeze > requirements.txt”
+4. Commit and push to GitHub
+
+Log in to my Heroku account:
+1. Click on “Create a new up”
+2. Add my app’s name, and choose my region (Europe)
+3. Click on “Create app”
+4. From the menu, I choose “Settings”
+5. Go to “Config Vars” section, and click on “Reveal Config Vars”
+6. Type “CREDS” in the “KEY field” and copy my creds.json file content in the “VALUE field”, then click on “Add”
+7. Go to “Buildpacks” section, click on “Add buildpack”
+8. Select Python and click on “Save changes”
+9. Click on “Add buildpack” again, select Node.js, and click on “Save changes”
+10. From the menu choose “Deploy”
+11. At the “Deployment method” select GitHub
+12. At the “Connect to GitHub” section choose “Connect to GitHub”
+13. Type my GitHub repository name and click on “Search”, then click on “Connect”
+14. (Choose to have automatic or manual deployment - I chose manual)
+15. Go to “Manual deploy” section and click on “Deploy branch”
+16. Click on “View” - that shows the app
+
+Deploy the edited project manually:
+1. Refresh requirements.txt in the terminal
+2. Commit and push to GitHub
+3. Log in to the Heroku account
+4. Click on your app’s name
+5. Click on “Deploy” in the menu
+6. Click on “Deploy branch” in the “Manual deploy” section
+
   </br>
 
 ---
@@ -523,6 +565,22 @@ _Python validation:_
 _colorama and emojis:_
 
 ![colorama](</docs/images/colorama and emoji.png>)
+</br>
+
+**- Error:**
+- Altough on my terminal the colors were nice, on the deployed version it was too dark.
+
+**- Solution:**
+ I added {style.BRIGHT} also in front of my colors.
+
+</br>
+
+_Too dark:_
+![too dark](</docs/images/too dark after deployment.png>)
+</br>
+
+_Corrected the colors, now it is perfect:_
+![perfect](/docs/images/perfect.png)
 </br>
 
 ---
