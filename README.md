@@ -231,7 +231,7 @@ _Set up innitial libraries. I added Colorama only in the end::_
 
 </br>
 
-_starting print() and _ask_for_veggie()function:_
+_starting print() and ask for veggie()function:_
 
 ![ask_for_vegie](</docs/images/ask for veggie.png>)
 
@@ -246,7 +246,7 @@ _starting print() and _ask_for_veggie()function:_
  
  </br>
 
- _validate_favourite_veggie_function:_
+ _validate favourite veggie function:_
 
  ![validate_fav_veg](/docs/images/validate_fav_veg.png)
 
@@ -525,7 +525,7 @@ _Python validation:_
 
 ### Optimization:
 
-- I had functions for validating yes-no answers, I refactored them into one, and I used it with different arguments. I also reused the get_columns function with different arguments.
+- I had functions for validating yes-no answers, I refactored them into one, and I used it with different arguments. I also reused the get_columns() function with different arguments.
  
 - Making expressions shorter
 
