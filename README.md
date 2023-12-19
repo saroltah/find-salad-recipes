@@ -136,6 +136,13 @@ Deploy the edited project manually:
 6. Click on “Deploy branch” in the “Manual deploy” section
 
   </br>
+I created an example.json file, where I changed the following data:
+
+- project_id, private_key_id, private_key, client_email, client_id.
+
+These must have unique values for each project.
+
+</br>
 
 ---
 </br>
@@ -343,15 +350,15 @@ For the case there was no matching recipe, I added the ask_for_veggies() functio
    
 **- Solution:**
  
-I created all_functions, where I put the whole sequence, and called that when the program needed to start again. I changed it later to the start_again() function.
+I created start_asking_for_veggies(), where I put the whole sequence, and called that when the program needed to start again. I changed it later to the start_again() function.
 
 - If there is a match, it triggers the show_recipe() function. If there is no match, it triggers the start_again() function.  
  
  </br>
 
- _Creating all functions() function:_
+ _Creating start_asking_for_veggies() function:_
 
-![all functions](</docs/images/all_functions function.png>)
+![start_asking_for_veggies()](</docs/images/all_functions function.png>)
 
 </br>
 
@@ -452,7 +459,7 @@ _Show the link of the matching recipe:_
 ### 14.
 **adding start again() function:**
 
- - It can have same yes-no answer, as in show_whole_recipe() function, with the same while True loop and validate_answer() function. When the user says yes, it replays all the functions all_functions(), if the answer is no, it wishes a nice day and exits the program.
+ - It can have same yes-no answer, as in show_whole_recipe() function, with the same while True loop and validate_answer() function. When the user says yes, it replays all the functions start_asking_for_veggies(), if the answer is no, it wishes a nice day and exits the program.
  
  </br>
 
@@ -551,7 +558,7 @@ _Python validation:_
 
 - Have an example.json file, which helps to recreate the project but doesn't contain sensitive data.
 
-- I added if __ name __ == "__ main __" before I call all_functions(), so it doesn't run automatically, only when I directly want to execute it. 
+- I added if __ name __ == "__ main __" before I call start_asking_for_veggies(), so it doesn't run automatically, only when I directly want to execute it. 
 
 - To make it more readable and friendlier I used Colorama and also inserted some emojis.
 

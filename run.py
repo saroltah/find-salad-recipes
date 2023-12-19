@@ -16,6 +16,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('find_sallad_recipes')
 
+#Calling colorama:
 
 init()
 
@@ -30,7 +31,6 @@ def validate_ingredients_sheet():
         all_ingredients = ingredients_sheet.get_all_values()
     except gspread.exceptions.WorksheetNotFound:
         print("The 'ingredients' worksheet is not found in the spreadsheet.")
-
 
 def ask_for_veggie():
     """
@@ -76,14 +76,12 @@ def get_columns(sheet):
 
     return(all_columns)
 
-
 def find_matching_recipe(veggie, columns):
     """
     Find recipes, which contain the input ingredient.
     Let the user know if there is a recipe found, or not.
     If there is a recipe found, it will be shown after.
     If there is no recipe found, the user has an option to start it again.
-
     """
 
     nested_columns = columns
@@ -143,7 +141,6 @@ def show_the_whole_recipe():
     Ask users if they want to see the whole recipe.
     If they say yes, they will be shown the link.
     If they say no, they have the option to start again.
-
     """
 
     validate_link_sheet()
@@ -201,13 +198,13 @@ def start_again():
         if validate_answer(start_again_answer):  
 
             if start_again_answer == "yes":
-                all_functions()
+                start_asking_for_veggies()
             elif start_again_answer == "no":
                 print("Have a nice day!🥗💗")
                 exit()
             break
 
-def all_functions():
+def start_asking_for_veggies():
     """
     Play the whole sequence.
     """
@@ -221,5 +218,5 @@ print("Tell your favorite veggie, and I show you what you can make out of it.")
 print("Loading data..")  
 
 if __name__ == "__main__":
-    all_functions()
+   start_asking_for_veggies()
  
