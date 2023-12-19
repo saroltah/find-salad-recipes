@@ -149,6 +149,7 @@ Deploy the edited project manually:
  - [VS Code](https://code.visualstudio.com/)
  - [Python Syntax Checker](https://extendsclass.com/python-tester.html)
  - [Colorama](https://pypi.org/project/colorama/)
+ - [Diagrams](https://app.diagrams.net/)
 
  
 **Libraries:**
@@ -514,7 +515,7 @@ _Error: It plays through the sequence with all matches_
 | If there is no match with the veggie_inout it says oh no | To the favorite_veggie input, I answer something out of the database | It says: Oh no, I haven't found any recipes unfortunately | It says: Oh no, I haven't found any recipes unfortunately |
 | After sending Oh no message it asks if I want to look for another recipe | To the favorite_veggie input, I answer something out of the database | After Oh, no message it says Would you like to look for another recipe? Type yes or no. | After Oh, no message it says Would you like to look for another recipe? Type yes or no.| 
 | The sequence can go on "forever" | I am playing through the sequence many times without answering no to look for more recipe questions | It is working, playing everything again and again | It is working, playing everything again and again | 
-| Validation shows no error | I copied my code to [Python Syntax Checker](https://extendsclass.com/python-tester.html) | It says no syntax error detected | It says no syntax error detected | 
+| Validation shows no error, and the format meets pep8 requirements | I copied my code to [Python Syntax Checker](https://extendsclass.com/python-tester.html). I check- I also revised [pip8 guideline](https://peps.python.org/pep-0008/)  | It says no syntax error detected | It says no syntax error detected | 
 
 </br>
 
