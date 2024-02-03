@@ -133,8 +133,7 @@ def show_matching_recipe(veggie, columns):
         if veggie in ingredients:
             matching_recipes = (
                 f"Name: ✨ {recipe_name} ✨. \n"
-                f"All veggies you need: {other_ingredients}"
-                )
+                f"All veggies you need: {other_ingredients}")
             print(matching_recipes)
             show_the_whole_recipe()
             break
@@ -167,8 +166,7 @@ def show_the_whole_recipe():
         print(
             f"{Style.BRIGHT}{Fore.GREEN}"
             "Would you like to see the whole recipe?"
-            f"{Style.RESET_ALL}"
-            )
+            f"{Style.RESET_ALL}")
         recipe_answer_input = input("Type yes or no.\n")
         recipe_answer = recipe_answer_input.lower()
 
@@ -205,8 +203,7 @@ def show_recipe_link(name, links):
         if name in link:
             print(
                 f"You can find the whole recipe on this link: \n"
-                f"{Style.BRIGHT}{Fore.MAGENTA}{link[1]}{Style.RESET_ALL}"
-                )
+                f"{Style.BRIGHT}{Fore.MAGENTA}{link[1]}{Style.RESET_ALL}")
     start_again()
 
 
@@ -221,8 +218,7 @@ def start_again():
         print(
             f"{Style.BRIGHT}{Fore.GREEN}"
             "Would you like to look for another recipe?"
-            f"{Style.RESET_ALL}"
-            )
+            f"{Style.RESET_ALL}")
         start_again_answer_input = input("Type yes or no. \n ")
         start_again_answer = start_again_answer_input.lower()
         if validate_answer(start_again_answer):
