@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 from colorama import init, Fore, Style
 
 
-#These code snippets are borrowed from Code Institute:
+# These code snippets are borrowed from Code Institute:
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -16,9 +16,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('find_sallad_recipes')
 
-#Calling colorama:
+# Calling colorama:
 
 init()
+
 
 def validate_ingredients_sheet():
     """
@@ -26,11 +27,12 @@ def validate_ingredients_sheet():
     """
 
     try:
-        ingredients_sheet = SHEET.worksheet('ingredients') 
-        global all_ingredients  
+        ingredients_sheet = SHEET.worksheet('ingredients')
+        global all_ingredients 
         all_ingredients = ingredients_sheet.get_all_values()
     except gspread.exceptions.WorksheetNotFound:
         print("The 'ingredients' worksheet is not found in the spreadsheet.")
+
 
 def ask_for_veggie():
     """
@@ -44,9 +46,10 @@ def ask_for_veggie():
 
         if validate_favorite_veggie(favorite_veggie):
 
-            print ("I am looking for recipes..")
+            print("I am looking for recipes..")
             return favorite_veggie
             break
+
 
 def validate_favorite_veggie(veggie):
     """
@@ -55,12 +58,13 @@ def validate_favorite_veggie(veggie):
 
     try:
         if not veggie.isalpha():
-            raise ValueError ("Numbers and characters are not acceptable")
+            raise ValueError("Numbers and characters are not acceptable")
     except ValueError as e:
-        print("Numbers and characters are not acceptable") 
+        print("Numbers and characters are not acceptable")
         return False
-    
+
     return True
+
 
 def get_columns(sheet):
     """
@@ -68,13 +72,14 @@ def get_columns(sheet):
     The column index is the length of the first row.
     """
 
-    all_columns=[]
+    all_columns = []
 
     for columns_index in range(len(sheet[0])):
         columns = [row[columns_index] for row in sheet]
         all_columns.append(columns)
 
-    return(all_columns)
+    return (all_columns)
+
 
 def find_matching_recipe(veggie, columns):
     """
@@ -93,36 +98,38 @@ def find_matching_recipe(veggie, columns):
 
     if veggie in flattened_columns:
         print(f"{Style.BRIGHT}{Fore.MAGENTA}Hurray, I show your match!{Style.RESET_ALL}")
-        show_matching_recipe(favorite_veggie, get_columns(all_ingredients))    
+        show_matching_recipe(favorite_veggie, get_columns(all_ingredients))
     else:
         print(f"Oh no, I haven't found any recipes unfortunately.")
         start_again()
-       
+
+
 def show_matching_recipe(veggie, columns):
-    """ 
+    """
     Delete empty objects from list.
     Show the user the matching recipe with the rest of the ingredients.
     """
 
-    spaceless_columns=[]
+    spaceless_columns = []
 
     for column in columns:
-        spaceless_column=[x for x in column if x.strip() != '']
+        spaceless_column = [x for x in column if x.strip() != '']
         spaceless_columns.append(spaceless_column)
-        
+
     for column in spaceless_columns:
         global recipe_name
         recipe_name = column[0]
-            
+
         ingredients = column[1:]
         delimiter = ', '
         other_ingredients = delimiter.join(ingredients)
 
         if veggie in ingredients:
             matching_recipes = f"Name: ✨ {recipe_name} ✨. \n All veggies you need: {other_ingredients}"
-            print(matching_recipes)   
+            print(matching_recipes)
             show_the_whole_recipe()
             break
+
 
 def validate_link_sheet():
     """
@@ -131,10 +138,11 @@ def validate_link_sheet():
 
     try:
         link_sheet = SHEET.worksheet('link')
-        global all_links  
+        global all_links
         all_links = link_sheet.get_all_values()
     except gspread.exceptions.WorksheetNotFound:
         print("The 'link' worksheet is not found in the spreadsheet.")
+
 
 def show_the_whole_recipe():
     """
@@ -167,12 +175,13 @@ def validate_answer(answer):
 
     try:
         if answer != "yes" and answer != "no":
-            raise ValueError ("only yes or no is acceptable")
+            raise ValueError("only yes or no is acceptable")
     except ValueError as e:
-        print("This question can only be answered with yes or no.") 
+        print("This question can only be answered with yes or no.")
         return False
 
     return True
+
 
 def show_recipe_link(name, links):
     """
@@ -183,6 +192,7 @@ def show_recipe_link(name, links):
         if name in link:
             print(f"You can find the whole recipe on this link: \n {Style.BRIGHT}{Fore.MAGENTA}{link[1]}{Style.RESET_ALL}")
     start_again()
+
 
 def start_again():
     """
@@ -195,7 +205,7 @@ def start_again():
         print(f"{Style.BRIGHT}{Fore.GREEN}Would you like to look for another recipe?{Style.RESET_ALL}")
         start_again_answer_input = input("Type yes or no. \n ")
         start_again_answer = start_again_answer_input.lower()
-        if validate_answer(start_again_answer):  
+        if validate_answer(start_again_answer): 
 
             if start_again_answer == "yes":
                 start_asking_for_veggies()
@@ -203,6 +213,7 @@ def start_again():
                 print("Have a nice day!🥗💗")
                 exit()
             break
+
 
 def start_asking_for_veggies():
     """
@@ -212,11 +223,11 @@ def start_asking_for_veggies():
     ask_for_veggie()
     get_columns(all_ingredients)
     find_matching_recipe(favorite_veggie, get_columns(all_ingredients))
-    
+
+
 print("Are you craving some yummy salad?🥗💗")
 print("Tell your favorite veggie, and I show you what you can make out of it.")
-print("Loading data..")  
+print("Loading data..")
 
 if __name__ == "__main__":
-   start_asking_for_veggies()
- 
+    start_asking_for_veggies()
